@@ -6,8 +6,10 @@
 <div class="container">
     <br>
     <br>
-    <div id="title">  Photo Gallery </div>
-    <div id="subheading"> Amazing pictures from around the world! </div>
+    <h1>
+        <span>Photogallery</span>
+    </h1>
+{#    <div id="subheading"> Amazing pictures from around the world! </div>#}
 </div>
 
 
@@ -109,22 +111,38 @@
 </div>
 
 <style>
-    #title{
+    h1 {
+        font-family: "Times New Roman";
+        max-width: 40ch;
+        text-align: center;
+        transform: scale(0.94);
+        animation: scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1);
         top: 40px;
         left: 300px;
-        position: relative;
-        font-size:75px;
-        font-weight: bold;
-        font-family: "Times New Roman";
+        font-size: 130px;
+        font-weight:bold;
     }
-    #subheading{
-        top: 30px;
-        left: 300px;
-        font-size:30px;
-        font-weight: bold;
-        font-family: "Times New Roman";
-        position:relative;
+    @keyframes scale {
+        100% {
+            transform: scale(1);
+        }
+    }
 
+    span {
+        display: inline-block;
+        opacity: 0;
+        filter: blur(4px);
+    }
+
+    span:nth-child(1) {
+        animation: fade-in 0.8s 0.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
+    }
+
+    @keyframes fade-in {
+        100% {
+            opacity: 1;
+            filter: blur(0);
+        }
     }
     container {
         position: relative;
@@ -142,10 +160,12 @@
     }
 
     html,body{
-        background: url("/static/camerapic.PNG");
-        background-repeat: 0;
-        background-opacity:0.5;
-        min-height:100%
+        background: url("/static/camera.PNG");
+        min-height: 130%;
+        min-width: 100%;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
     }
 </style>
 
