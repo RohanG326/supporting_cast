@@ -16,14 +16,14 @@
     </div>
     <h1 class="block-effect" style="--td: 1.2s">
         <div class="block-reveal" style="--bc: #D2B48C; length:10px; --d: .1s">Plan your Travel with us </div>
-
+        <p id="Aboutus"> This is about us </p>
     </h1>
 
 
     <style>
     html,body{
         background: url("/static/indexmainpic.PNG");
-        min-height: 140%;
+        min-height: 130%;
         min-width: 100%;
         background-size: cover;
         background-position: center center;
@@ -47,16 +47,16 @@
         mix-blend-mode: screen;
     }
     #container {
-        color:black;
+        color:white;
         text-transform: uppercase;
-        font-size:50px;
+        font-size:40px;
         font-weight:bold;
         font-family: "Times New Roman";
         padding-top:200px;
         position:relative;
         width:100%;
-        top:60%;
-        left:05%;
+        top:35%;
+        left:60%;
         align-self: center;
 
     }
@@ -186,7 +186,29 @@
         }
 
     }
-</style>
+    #Aboutus {
+        padding-top: 150px;
+        padding-bottom: 150px;
+        position: absolute;
+        left: 5%;
+        top: 100%;
+        text-align: center;
+        font-size: 20px;
+        color: black;
+        width: 400px;
+        height: 300px;
+        background: #D2B48C;
+        opacity: 80%;
+        transition: width 2s;
+        margin-left: auto;
+        margin-right: auto;
+        animation: pulse 5s infinite;
+    }
+    #Aboutus:hover {
+        width: 600px;
+    }
+
+    </style>
 
 
 {% endblock %}
