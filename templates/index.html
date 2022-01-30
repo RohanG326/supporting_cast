@@ -4,46 +4,147 @@
 <!-- Setting up variables to customize "project" details to be specific to kangaroos -->
 
 {% block body %}
+    <h1 id="mainheader"> Expeditions </h1>
+    <div id=container>
+        Travel
+        <div id=flip>
+            <div><div>Luxuriously</div></div>
+            <div><div>Organized</div></div>
+            <div><div>To Places</div></div>
+        </div>
+        With us Expeditions
+    </div>
+    <h1 class="block-effect" style="--td: 1.2s">
+        <div class="block-reveal" style="--bc: #D2B48C; length:10px; --d: .1s">Explore Our Website</div>
+        <div class="block-reveal" style="--bc: #654321; length:10px; --d: .5s">Start Planning Your Travel With us</div>
+    </h1>
 
-<h1 id="mainheader"> Expeditions </h1>
-<h1 id="catchphrase"> create memories and travel organized to various destinations around the world </h1>
-<img id="indexmainpic"src="/static/indexmainpic.PNG" alt="Index main" height="550" width="850">
 
-
-<style>
-    #indexmainpic {
-        padding-top: 80px;
-        position: absolute;
-        left: 225px;
-        bottom: 4%;
-    }
+    <style>
     html,body{
-        background-color: #B99976;
+        background: url("/static/indexmainpic.PNG");
+        min-height: 140%;
+        min-width: 100%;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+
     }
     #mainheader {
-        position: absolute;
-        top: 5%;
-        font-size:120px;
-        padding-top: 130px;
-        selfalign: center;
-        left: 335px;
+        background-color: white;
         color: black;
-        font-family: "Times New Roman";
-    }
-    container {
-        position: absolute;
+        font-size: 12vw;
+        font-weight: bold;
+        margin: 0 auto;
+        padding: 10px;
+        width: 80%;
         text-align: center;
-        color: black;
-    }
-    #catchphrase {
         position: absolute;
-        top: 35%;
-        font-size:20px;
-        padding-top: 130px;
-        selfalign: center;
-        left: 325px;
-        color: black;
-        font-family: "Times New Roman";
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        mix-blend-mode: screen;
+    }
+    #container {
+        color:black;
+        text-transform: uppercase;
+        font-size:30px;
+        font-weight:bold;
+        padding-top:200px;
+        position:relative;
+        width:100%;
+        top:20%;
+        left:62%;
+        align-self: center;
+
+    }
+
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        length:10px;
+    }
+
+
+
+    .info {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    p {
+        color: #2e2e2e;
+        margin-bottom: 20px;
+    }
+
+
+    /* block-$ */
+    .block-effect {
+        font-size: calc(8px + 6vw);
+    }
+
+    .block-reveal {
+        --t: calc(var(--td) + var(--d));
+
+        color: transparent;
+        padding: 4px;
+
+        position: relative;
+        overflow: hidden;
+
+        animation: revealBlock 0s var(--t) forwards;
+    }
+
+    .block-reveal::after {
+        content: '';
+
+        width: 0%;
+        height: 100%;
+        padding-bottom: 4px;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        background: var(--bc);
+        animation: revealingIn var(--td) var(--d) forwards, revealingOut var(--td) var(--t) forwards;
+    }
+
+
+    /* animations */
+    @keyframes revealBlock {
+        100% {
+            color: white;
+            font-size: 100px;
+            font-family: "Times New Roman";
+        }
+    }
+
+    @keyframes revealingIn {
+
+        0% {
+            width: 0%;
+        }
+
+        100% {
+            width: 100%;
+        }
+    }
+
+    @keyframes revealingOut {
+
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(100%);
+        }
+
     }
 </style>
 
