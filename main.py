@@ -17,7 +17,7 @@ app.register_blueprint(api_bp)
 from algorithm.algorithm import app_algorithm
 app.register_blueprint(app_algorithm)
 
-from sc_crud.app_crud import app_crud
+from crud.app_crud import app_crud
 app.register_blueprint(app_crud)
 
 from database.app_database import app_database
@@ -29,7 +29,7 @@ app.register_blueprint(app_flight)
 from page.app_page import app_page
 app.register_blueprint(app_page)
 
-from sc_crud.app_crud_api import app_crud_api
+from crud.app_crud_api import app_crud_api
 app.register_blueprint(app_crud_api)
 
 darkmode="darkmode"
@@ -51,6 +51,7 @@ def navbarsearch():
 @app.route('/searchtest/')
 def searchtest():
     return render_template("searchtest.html", darkmode=darkmode)
+
 
 @app.route('/photogallery', methods=['GET', 'POST'])
 def photogallery():
@@ -79,6 +80,7 @@ def compass():
 @app.route('/packing', methods=['GET', 'POST'])
 def packing():
     return render_template("pbl/packing.html", darkmode=darkmode)
+
 
 @app.route('/minigames', methods=['GET', 'POST'])
 def minigames():
