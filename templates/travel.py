@@ -142,7 +142,7 @@ def planner():
 
     return render_template("pbl/planner.html", darkmode=darkmode)
 
-@app.route('/translate/', methods=['GET', 'POST'])
+@travel_pg.route('/translate/', methods=['GET', 'POST'])
 def translate():
     # submit button has been pushed
     if request.form:
@@ -151,3 +151,15 @@ def translate():
             return render_template("pbl/translate.html", name=name)
     # starting and empty input default
     return render_template("pbl/translate.html",)
+
+@travel_pg.route('/travelchecklist')
+def travelchecklist():
+    return render_template("pbl/travelchecklist.html", darkmode=darkmode)
+
+@travel_pg.route('/compass', methods=['GET', 'POST'])
+def compass():
+    return render_template("pbl/compass.html", darkmode=darkmode)
+
+@travel_pg.route('/packing', methods=['GET', 'POST'])
+def packing():
+    return render_template("pbl/packing.html", darkmode=darkmode)

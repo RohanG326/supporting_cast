@@ -17,7 +17,7 @@ app.register_blueprint(api_bp)
 from algorithm.algorithm import app_algorithm
 app.register_blueprint(app_algorithm)
 
-from sc_crud.app_crud import app_crud
+from crud.app_crud import app_crud
 app.register_blueprint(app_crud)
 
 from database.app_database import app_database
@@ -29,8 +29,11 @@ app.register_blueprint(app_flight)
 from page.app_page import app_page
 app.register_blueprint(app_page)
 
-from sc_crud.app_crud_api import app_crud_api
+from crud.app_crud_api import app_crud_api
 app.register_blueprint(app_crud_api)
+
+from templates.minigames import mini_game
+app.register_blueprint(mini_game)
 
 darkmode="darkmode"
 
@@ -73,31 +76,7 @@ def locations():
     response = requests.request("GET", url)
     return render_template("pbl/locations.html", locations=response.json(), darkmode=darkmode)
 
-@app.route('/compass', methods=['GET', 'POST'])
-def compass():
-    return render_template("pbl/compass.html", darkmode=darkmode)
 
-@app.route('/packing', methods=['GET', 'POST'])
-def packing():
-    return render_template("pbl/packing.html", darkmode=darkmode)
-
-
-@app.route('/minigames', methods=['GET', 'POST'])
-def minigames():
-    if request.form:
-        word1 = request.form.get("word1")
-        word2 = request.form.get("word2")
-        if len(word1) < len(word2):
-            shorterlen = len(word1)
-            difference = len(word2) - len(word1)
-        else:
-            shorterlen = len(word2)
-            difference = len(word1) - len(word2)
-        for x in range(0, shorterlen):
-            if word1[x] != word2[x]:
-                difference += 1
-        return render_template("pbl/minigames.html", result=difference, darkmode=darkmode)
-    return render_template("pbl/minigames.html", darkmode=darkmode)
 
 @app.route('/darkmode', methods=['GET', 'POST'])
 def toggleDarkMode():
@@ -109,9 +88,6 @@ def toggleDarkMode():
     print(darkmode)
     return ('', 200)
 
-@app.route('/travelchecklist/')
-def travelchecklist():
-    return render_template("pbl/travelchecklist.html", darkmode=darkmode)
 
 # runs the application on the development server
 if __name__ == "__main__":
