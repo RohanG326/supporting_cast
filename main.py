@@ -17,7 +17,7 @@ app.register_blueprint(api_bp)
 from algorithm.algorithm import app_algorithm
 app.register_blueprint(app_algorithm)
 
-from crud.app_crud import app_crud
+from sc_crud.app_crud import app_crud
 app.register_blueprint(app_crud)
 
 from database.app_database import app_database
@@ -29,7 +29,7 @@ app.register_blueprint(app_flight)
 from page.app_page import app_page
 app.register_blueprint(app_page)
 
-from crud.app_crud_api import app_crud_api
+from sc_crud.app_crud_api import app_crud_api
 app.register_blueprint(app_crud_api)
 
 darkmode="darkmode"
@@ -72,9 +72,13 @@ def locations():
     response = requests.request("GET", url)
     return render_template("pbl/locations.html", locations=response.json(), darkmode=darkmode)
 
-@app.route('/fetchdemo', methods=['GET', 'POST'])
-def fetchdemo():
-    return render_template("pbl/fetchdemo.html", darkmode=darkmode)
+@app.route('/compass', methods=['GET', 'POST'])
+def compass():
+    return render_template("pbl/compass.html", darkmode=darkmode)
+
+@app.route('/packing', methods=['GET', 'POST'])
+def packing():
+    return render_template("pbl/packing.html", darkmode=darkmode)
 
 @app.route('/minigames', methods=['GET', 'POST'])
 def minigames():

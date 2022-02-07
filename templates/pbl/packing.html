@@ -1,0 +1,59 @@
+{% extends "layouts/base.html" %}
+
+{% block body %}
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Packing List!</title>
+        <style>
+            body {
+                background-image: url(/static/plane.gif/);
+            }
+            h2 {
+                color: blue;
+                font-family: verdana;
+                font-size: 300%;
+                text-align: center;
+
+            }
+            h4 {
+                color: #000000;
+                font-family: courier;
+                font-size: 160%;
+                text-align: center;
+                border: 3px solid #000000;
+
+            textarea.center {
+                margin: auto;
+                width: 50%;
+                border: 3px solid green;
+                padding: 10px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+    <h2>Don't forget to pack:</h2>
+    <h4>Simply type any reminders in the text box, and click save. When you reload the page, click "load" to reload any of your previous reminders!</h4>
+    <textarea id="myTextarea" rows="10" cols="80"></textarea>
+    <p></p>
+    <button onclick="mySave()">Save</button>
+    <button onclick="myLoad()">Load</button>
+    </body>
+    </html>
+
+    <script>
+        function mySave() {
+            var myContent = document.getElementById("myTextarea").value;
+            localStorage.setItem("myContent", myContent);
+        }
+        function myLoad() {
+            var myContent = localStorage.getItem("myContent");
+            document.getElementById("myTextarea").value = myContent;
+        }
+    </script>
+{% endblock %}
