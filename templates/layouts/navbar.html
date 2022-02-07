@@ -105,6 +105,10 @@
                 <a class="nav-link" href="{{ url_for('travel.planner') }}">Travel Planner</a>
                 <a class="nav-link" href="{{ url_for('travel.currency') }}">Currency Converter</a>
                 <a class="nav-link" href="{{ url_for('travelchecklist') }}">Travel Checklist</a>
+                <a class="nav-link" href="{{ url_for('travel.currency') }}">Currency</a>
+                <a class="nav-link" href="{{ url_for('translate') }}">Translator</a>
+                <a class="nav-link" href="{{ url_for('compass') }}">Track your Location!</a>
+                <a class="nav-link" href="{{ url_for('packing') }}">Packing List!</a>
             </div>
         </li>
     </div>
@@ -145,8 +149,8 @@
     </div>
     <div class="container">
         <div class="row">
-            <form action="/navbarsearch" id="navbarsearch" method="POST" >
-                <input name="term" id="term" required="required" placeholder="Search Website"/>
+            <form action="/navbarsearch" id="navbarsearch" method="POST">
+                <input name="term" id="term" required="required" />
                 <input type="submit" value="Search" />
             </form>
         </div>

@@ -52,6 +52,7 @@ def navbarsearch():
 def searchtest():
     return render_template("searchtest.html", darkmode=darkmode)
 
+
 @app.route('/photogallery', methods=['GET', 'POST'])
 def photogallery():
     if request.form:
@@ -72,9 +73,14 @@ def locations():
     response = requests.request("GET", url)
     return render_template("pbl/locations.html", locations=response.json(), darkmode=darkmode)
 
-@app.route('/fetchdemo', methods=['GET', 'POST'])
-def fetchdemo():
-    return render_template("pbl/fetchdemo.html", darkmode=darkmode)
+@app.route('/compass', methods=['GET', 'POST'])
+def compass():
+    return render_template("pbl/compass.html", darkmode=darkmode)
+
+@app.route('/packing', methods=['GET', 'POST'])
+def packing():
+    return render_template("pbl/packing.html", darkmode=darkmode)
+
 
 @app.route('/minigames', methods=['GET', 'POST'])
 def minigames():

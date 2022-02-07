@@ -1,0 +1,67 @@
+<!-- Extending the predefined project layout -->
+{% extends "layouts/base.html" %}
+
+<!- This variable sets name of browser tab  -->
+{% set project = "Translate" %}
+{% block body %}
+
+<style>
+    .bg-image {
+        /* The image used */
+        background-image: url("https://artsyfartsylife.com/wp-content/uploads/2020/01/mixing-purple-and-navy.png");
+
+    {# another potential image, check with team which one to use: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaWiAfnPUQDlvL7Sx4d5d8z8oKmkaXb4SAQw&usqp=CAU#}
+        /* Add the blur effect */
+        filter: blur(8px);
+        -webkit-filter: blur(8px);
+
+        /* Full height */
+        height: 100%;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+</style>
+<html lang="en-US">
+
+<style>
+
+</style>
+<body>
+
+<h1 translate="no">Translator</h1>
+
+
+
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({inputlang: 'en'}, 'google_translate_element');
+    }
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<div class="col-12">
+    <p translate="no">Translation:</p>
+    <p> {{name}}</p>
+</div>
+
+<div class="col-12">
+    <form action="/translate/" id="translate" method="POST" >
+        <label for="name" translate="no">Enter what you want to be translated</label>
+        <input name="name" id="name">
+        <input type="submit" value="Translate!" translate="no">
+    </form>
+</div>
+</body>
+</html>
+
+{% endblock %}
+
+
