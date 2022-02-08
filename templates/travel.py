@@ -151,3 +151,11 @@ def translate():
             return render_template("pbl/translate.html", name=name)
     # starting and empty input default
     return render_template("pbl/translate.html",)
+
+@app.route('/travelchecklist/')
+def travelchecklist():
+    return render_template("pbl/travelchecklist.html", darkmode=darkmode)
+
+@app.route('/calendar/')
+def calendar():
+    return render_template("pbl/calendar.html", darkmode=darkmode)
