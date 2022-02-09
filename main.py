@@ -109,9 +109,8 @@ def toggleDarkMode():
     print(darkmode)
     return ('', 200)
 
-@app.route('/travelchecklist/')
-def travelchecklist():
-    return render_template("pbl/travelchecklist.html", darkmode=darkmode)
+
+
 
 # runs the application on the development server
 if __name__ == "__main__":
