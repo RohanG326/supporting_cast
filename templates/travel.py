@@ -142,7 +142,7 @@ def planner():
 
     return render_template("pbl/planner.html", darkmode=darkmode)
 
-@travel_pg.route('/translate/', methods=['GET', 'POST'])
+@app.route('/translate/', methods=['GET', 'POST'])
 def translate():
     # submit button has been pushed
     if request.form:
