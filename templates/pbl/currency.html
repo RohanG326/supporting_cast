@@ -2,7 +2,7 @@
 {% extends "layouts/base.html" %}
 
 <!- This variable sets name of browser tab  -->
-{% set project = "Adi is so Cool" %}
+{% set project = "Currency Converter" %}
 
 <!- This is a replacement block for Body in base.html -->
 {% block body %}
@@ -20,9 +20,7 @@
             width: 300%;
             margin: auto;
         }
-        {#tr:nth-child(even) {#}
-        {#    background-color: #f2f2f2;#}
-        {#}#}
+
     </style>
     <body style="background-color:powderblue; height: 2000px">
 
@@ -49,9 +47,113 @@
                     <td>{{ctype.rate}}</td>
                     <td>{{ctype.rate_for_amount}}</td>
                 </tr>
-
-
     </table>
+
+
+
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            #myInput {
+                background-position: 10px 10px;
+                background-repeat: no-repeat;
+                width: 100%;
+                font-size: 16px;
+                padding: 12px 20px 12px 40px;
+                border: 1px solid #ddd;
+                margin-bottom: 12px;
+            }
+
+            #myTable {
+                border-collapse: collapse;
+                width: 100%;
+                border: 1px solid #ddd;
+                font-size: 18px;
+            }
+
+            #myTable th, #myTable td {
+                text-align: left;
+                padding: 12px;
+            }
+
+            #myTable tr {
+                border-bottom: 1px solid #ddd;
+            }
+
+            #myTable tr.header, #myTable tr:hover {
+                background-color: #f1f1f1;
+            }
+        </style>
+
+
+    <h2>Search For a Currency</h2>
+
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for currency to find currency code.." title="Type in a name">
+
+    <table id="myTable">
+        <tr class="header">
+            <th style="width:60%;">Currency</th>
+            <th style="swidth:40%;">Currency Code</th>
+        </tr>
+        <tr>
+            <td>United States Dollar</td>
+            <td>USD</td>
+        </tr>
+        <tr>
+            <td>Euro</td>
+            <td>EUR</td>
+        </tr>
+        <tr>
+            <td>Indian Rupee</td>
+            <td>INR</td>
+        </tr>
+        <tr>
+            <td>Japanese Yen</td>
+            <td>JPY</td>
+        </tr>
+        <tr>
+            <td>Chinese </td>
+            <td>CNH</td>
+        </tr>
+        <tr>
+            <td>Canadian Dollar</td>
+            <td>CAD</td>
+        </tr>
+        <tr>
+            <td>Austrailian Dollar</td>
+            <td>AUD</td>
+        </tr>
+        <tr>
+            <td>British Pound</td>
+            <td>GBP</td>
+        </tr>
+    </table>
+
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+
+
 
 {% endblock %}
 

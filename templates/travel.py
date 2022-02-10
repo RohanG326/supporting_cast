@@ -74,9 +74,9 @@ def currency():
         currency2type = request.form['currency2type']
         currencyamount = request.form['currencyamount']
     except:
-        currency1type = "AUD"
-        currency2type = "CAD"
-        currencyamount = "1.0000"
+        currency1type = "USD"
+        currency2type = "USD"
+        currencyamount = "0"
 
     querystring = {"format":"json","from":currency1type,"to":currency2type,"amount":currencyamount}
 
@@ -89,8 +89,9 @@ def currency():
 
     results = json.loads(response.content.decode("utf-8"))
     print(results["amount"])
-    rates=results["rates"]
-    ctype=rates[currency2type]
+    rates = results["rates"]
+    ctype = rates[currency2type]
+
 
     print(response.text)
     return render_template("pbl/currency.html", results=results, darkmode=darkmode, ctype=ctype)
