@@ -15,7 +15,17 @@ darkmode="darkmode"
 def places():
     return render_template("pbl/places.html", darkmode=darkmode)
 
+@travel_pg.route('/location', methods=['GET', 'POST'])
+def location():
+    url = "http://127.0.0.1:8081/api/location"
+    response = requests.request("GET", url)
+    return render_template("pbl/location.html", location=response.json(), darkmode=darkmode)
 
+@app.route('/locations', methods=['GET', 'POST'])
+def locations():
+    url = "http://127.0.0.1:8081/api/locations"
+    response = requests.request("GET", url)
+    return render_template("pbl/locations.html", locations=response.json(), darkmode=darkmode)
 
 @travel_pg.route('/weather/', methods=['GET','POST'])
 def weather():
@@ -151,7 +161,7 @@ def translate():
         if len(name) != 0:  # input field has content
             return render_template("pbl/translate.html", name=name)
     # starting and empty input default
-    return render_template("pbl/translate.html",)
+    return render_template("pbl/translate.html")
 
 @travel_pg.route('/travelchecklist')
 def travelchecklist():
@@ -164,3 +174,11 @@ def compass():
 @travel_pg.route('/packing', methods=['GET', 'POST'])
 def packing():
     return render_template("pbl/packing.html", darkmode=darkmode)
+
+@travel_pg.route('/photogallery', methods=['GET', 'POST'])
+def photogallery():
+    if request.form:
+        input = request.form.get("input")
+        if len(input) != 0:
+            return render_template("pbl/photogallery.html", input1=input, darkmode=darkmode)
+    return render_template("pbl/photogallery.html", input1="", darkmode=darkmode)

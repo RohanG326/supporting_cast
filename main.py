@@ -59,28 +59,6 @@ def searchtest():
     return render_template("searchtest.html", darkmode=darkmode)
 
 
-@app.route('/photogallery', methods=['GET', 'POST'])
-def photogallery():
-    if request.form:
-        input = request.form.get("input")
-        if len(input) != 0:
-            return render_template("pbl/photogallery.html", input1=input, darkmode=darkmode)
-    return render_template("pbl/photogallery.html", input1="", darkmode=darkmode)
-
-@app.route('/location', methods=['GET', 'POST'])
-def location():
-    url = "http://127.0.0.1:8081/api/location"
-    response = requests.request("GET", url)
-    return render_template("pbl/location.html", location=response.json(), darkmode=darkmode)
-
-@app.route('/locations', methods=['GET', 'POST'])
-def locations():
-    url = "http://127.0.0.1:8081/api/locations"
-    response = requests.request("GET", url)
-    return render_template("pbl/locations.html", locations=response.json(), darkmode=darkmode)
-
-
-
 @app.route('/darkmode', methods=['GET', 'POST'])
 def toggleDarkMode():
     global darkmode

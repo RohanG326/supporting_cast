@@ -55,6 +55,10 @@ def createtask():
 
     return render_template("pbl/createtask.html", randomValue=randomValue, score=score)
 
+@create_task.route('/rohancreatetask/', methods=['GET','POST'])
+def rohancreatetask():
+    return render_template("rohancreatetask.html")
+
 if __name__ == "__main__":
     userquestions = input("How many questions do you want")
     for i in range(int(userquestions)):
