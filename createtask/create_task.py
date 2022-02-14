@@ -4,11 +4,11 @@ from __init__ import app
 import json
 import random as rand
 
-create_task = Blueprint('createtask', __name__,
-                      url_prefix='/task/',
+
+create_tk = Blueprint('createtask', __name__,
+                      url_prefix='/ct/',
                       template_folder='templates',
                       static_folder='static', static_url_path='static/createtask')
-
 
 darkmode="darkmode"
 
@@ -44,18 +44,18 @@ questionList = [
     question1, question2, question3, question4, question5, question6, question7, question8, question9, question10
 ]
 
-@create_task.route('/createtask/', methods=['GET','POST'])
+@create_tk.route('/createtask/', methods=['GET','POST'])
 def createtask():
-    # userinput = request.form['userinput']
+    userinput = request.form['userinput']
     randomValue = questionList[rand.randint(0, len(questionList)-1)]
-    # if randomValue.checkanswer():
-    #     score = score + 1
-    # else:
-    #     questionList.remove(randomValue)
+    if randomValue.checkanswer():
+        score = score + 1
+    else:
+        questionList.remove(randomValue)
 
-    return render_template("pbl/createtask.html", randomValue=randomValue, score=score)
+    return render_template("createtask.html", randomValue=randomValue, score=score)
 
-@create_task.route('/rohancreatetask/', methods=['GET','POST'])
+@create_tk.route('/rohancreatetask/', methods=['GET','POST'])
 def rohancreatetask():
     return render_template("rohancreatetask.html")
 

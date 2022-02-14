@@ -3,7 +3,6 @@
 from flask import render_template, request
 from __init__ import app
 import requests
-import json
 
 from templates.travel import travel_pg
 app.register_blueprint(travel_pg)
@@ -14,8 +13,8 @@ app.register_blueprint(about_pg)
 from api.webapi import api_bp
 app.register_blueprint(api_bp)
 
-from templates.create_task import create_task
-app.register_blueprint(create_task)
+from createtask.create_task import create_tk
+app.register_blueprint(create_tk)
 
 from algorithm.algorithm import app_algorithm
 app.register_blueprint(app_algorithm)
