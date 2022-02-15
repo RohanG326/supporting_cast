@@ -1,0 +1,273 @@
+{% extends "layouts/base.html" %}
+{% block body %}
+    <style>
+        .column {
+            float: left;
+            width: 20%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+<script>
+let score = 0
+{#Show and Hide Functions#}
+    function SANDH100x1() {
+        let x = document.getElementById('hidden100x1');
+        if (x.style.display == 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+    function SANDH100x2() {
+        let x = document.getElementById('hidden100x2');
+        if (x.style.display == 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+    function SANDH100x3() {
+        let x = document.getElementById('hidden100x3');
+        if (x.style.display == 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+    function SANDH100x4() {
+        let x = document.getElementById('hidden100x4');
+        if (x.style.display == 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+    function SANDH100x5() {
+        let x = document.getElementById('hidden200x5');
+        if (x.style.display == 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+    function SANDH200x1() {
+        let x = document.getElementById('hidden200x1');
+        if (x.style.display == 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+    function SANDH200x2() {
+        let x = document.getElementById('hidden200x2');
+        if (x.style.display == 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+    function SANDH200x3() {
+        let x = document.getElementById('hidden200x3');
+        if (x.style.display == 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+    function SANDH200x4() {
+        let x = document.getElementById('hidden200x4');
+        if (x.style.display == 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+    function SANDH200x5() {
+        let x = document.getElementById('hidden200x5');
+        if (x.style.display == 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+    // Answer Functions
+    function A100x1() {
+        let answer = document.getElementById('A100x1').value;
+        if (answer === 'Santiago') {
+            document.getElementById('R100x1').innerHTML = "Well Done!"
+            score = score + 1
+            document.getElementById('score').innerHTML = score
+        } else {
+            document.getElementById('R100x1').innerHTML = "Not Right!"
+        }
+    }
+function A100x2() {
+    let answer = document.getElementById('A100x2').value;
+    if (answer === 'Paris') {
+        document.getElementById('R100x2').innerHTML = "Well Done!"
+        score = score + 1
+        document.getElementById('score').innerHTML = score
+    } else {
+        document.getElementById('R100x2').innerHTML = "Not Right!"
+    }
+}
+</script>
+<body>
+
+<h1 style="text-align: center">Jeopardy</h1>
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="column">
+        <p style="text-align: center">
+            <button onclick="SANDH100x1()">$100</button>
+        <div class="container" id="hidden100x1" style="display:none">
+        <p style="text-align: center" >This is the capital city of Chile</p>
+            <br>
+            <label for="A100x1">What is the answer?</label>
+            <input id="A100x1" type="text" />
+            <input type="submit" onclick="A100x1();">
+            <p  style="text-align: center" id="R100x1"> </p>
+        </div>
+        </p>
+    </div>
+    <div class="column">
+        <p style="text-align: center">
+            <button onclick="SANDH100x2()">$100</button>
+        <div class="container" id="hidden100x2" style="display:none">
+        <p style="text-align: center" >This is the capital city of France</p>
+        <br>
+            <label for="answer">What is the answer?</label>
+            <input id="answer" type="text" />
+            <input type="submit" onclick="AnswerFunction();">
+            <p id="result1"> </p>
+        </div>
+        </p>
+    </div>
+    <div class="column">
+        <p style="text-align: center">
+            <button onclick="SANDH100x3()">$100</button>
+        <div class="container" id="hidden100x3" style="display:none">
+        <p style="text-align: center" >This is the capital city of Germany</p>
+        <br>
+            <label for="answer">What is the answer?</label>
+            <input id="answer" type="text" />
+            <input type="submit" onclick="AnswerFunction();">
+            <p id="result1"> </p>
+        </div>
+        </p>
+    </div>
+    <div class="column">
+        <p style="text-align: center">
+            <button onclick="SANDH100x4()">$100</button>
+        <div class="container" id="hidden100x4" style="display:none">
+        <p style="text-align: center" >This is the capital city of China</p>
+        <br>
+            <label for="answer">What is the answer?</label>
+            <input id="answer" type="text" />
+            <input type="submit" onclick="AnswerFunction();">
+            <p id="result1"> </p>
+        </div>
+        </p>
+    </div>
+    <div class="column">
+        <p style="text-align: center">
+            <button onclick="SANDH200x5()">$100</button>
+        <div class="container" id="hidden200x5" style="display:none">
+        <p style="text-align: center" >This is the capital city of Egypt</p>
+        <br>
+            <label for="answer">What is the answer?</label>
+            <input id="answer" type="text" />
+            <input type="submit" onclick="AnswerFunction();">
+            <p id="result1"> </p>
+        </div>
+        </p>
+    </div>
+</div>
+{# BUFFER ROW #}
+<div class="row">
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+{# ROW 2 FOR JEOPARDY #}
+<div class="row">
+    <div class="column">
+        <p style="text-align: center">
+            <button onclick="SANDH200x1()">$200</button>
+        <div class="container" id="hidden200x1" style="display:none">
+            <p style="text-align: center" >This is the capital city of Chile</p>
+            <br>
+            <label for="answer">What is the answer?</label>
+            <input id="answer" type="text" />
+            <input type="submit" onclick="AnswerFunction();">
+            <p id="result1"> </p>
+        </div>
+        </p>
+    </div>
+    <div class="column">
+        <p style="text-align: center">
+            <button onclick="SANDH200x2()">$200</button>
+        <div class="container" id="hidden200x2" style="display:none">
+            <p style="text-align: center" >This is the capital city of France</p>
+            <br>
+            <label for="answer">What is the answer?</label>
+            <input id="answer" type="text" />
+            <input type="submit" onclick="AnswerFunction();">
+            <p id="result1"> </p>
+        </div>
+        </p>
+    </div>
+    <div class="column">
+        <p style="text-align: center">
+            <button onclick="SANDH200x3()">$200</button>
+        <div class="container" id="hidden200x3" style="display:none">
+            <p style="text-align: center" >This is the capital city of Germany</p>
+            <br>
+            <label for="answer">What is the answer?</label>
+            <input id="answer" type="text" />
+            <input type="submit" onclick="AnswerFunction();">
+            <p id="result1"> </p>
+        </div>
+        </p>
+    </div>
+    <div class="column">
+        <p style="text-align: center">
+            <button onclick="SANDH200x4()">$200</button>
+        <div class="container" id="hidden200x4" style="display:none">
+            <p style="text-align: center" >This is the capital city of China</p>
+            <br>
+            <label for="answer">What is the answer?</label>
+            <input id="answer" type="text" />
+            <input type="submit" onclick="AnswerFunction();">
+            <p id="result1"> </p>
+        </div>
+        </p>
+    </div>
+    <div class="column">
+        <p style="text-align: center">
+            <button onclick="SANDH200x5()">$200</button>
+        <div class="container" id="hidden200x5" style="display:none">
+            <p style="text-align: center" >This is the capital city of Egypt</p>
+            <br>
+            <label for="answer">What is the answer?</label>
+            <input id="answer" type="text" />
+            <input type="submit" onclick="AnswerFunction();">
+            <p id="result1"> </p>
+        </div>
+        </p>
+    </div>
+</div>
+<p style="text-align: center; font-size: 100px" id="score"> </p>
+</body>
+{% endblock %}
+
+

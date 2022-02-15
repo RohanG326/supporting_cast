@@ -1,0 +1,18 @@
+{% extends "layouts/base.html" %}
+
+{% set project = "Create Task" %}
+
+{% block body %}
+
+    <form action="/ct/createtask/" method="POST" class="form">
+        <h2>{{ randomValue.question }}</h2>
+        <input type="text" placeholder="Enter Your Answer" name='userinput'>
+        <button type="submit">Submit</button>
+    </form>
+    <h2>{{ "Correct answer was: " + randomValue.answer }}</h2>
+
+
+{% endblock %}
+
+
+

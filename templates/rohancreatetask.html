@@ -1,0 +1,39 @@
+{% extends "layouts/base.html" %}
+{% set project = "Creating Tasks is so Cool" %}
+{% block body %}
+    <script>
+    class Trivia {
+        constructor(question, answer, point) {
+            this.question = question;
+            this.answer = answer;
+            this.point = point;
+        }
+
+        CheckAnswer(guess) {
+            return guess === this.answer;
+            }
+    }
+    let score = 0
+    let question1 = new Trivia('Chile?', 'Santiago', 1);
+    let question2 = new Trivia('France?', 'Paris', 1);
+
+    const qarray = [question1, question2]
+
+    function QNA() {
+        let questions = parseInt(document.getElementById('userquestions').value);
+        for (let i=0; i<questions; i++ ) {
+            let guess = document.getElementById('userguess').value;
+            let randomValue = Math.floor(Math.random() * qarray.length);
+            if (randomValue.CheckAnswer(guess)) {
+                document.getElementById('test').innerHTML = "Correct"
+            }
+        }
+    }
+    </script>
+    <p id="test"></p>
+    <label for="userquestions">How many questions do you want?</label>
+    </br>
+    <input  id="userquestions" type="text"/>
+    <input type="submit" onclick="QNA();">
+
+{% endblock %}

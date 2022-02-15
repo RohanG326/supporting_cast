@@ -41,11 +41,11 @@
     }
     // Answer Function
     function AnswerFunction() {
-        let answer = document.getElementById('answer');
-        if (answer .equals("Santiago")) {
-            document.getElementById('answer1').innerHTML = "Well Done!"
+        let result = document.getElementById('answer').value;
+        if (result === 'Santiago') {
+            document.getElementById('result1').innerHTML = "Well Done!"
         }
-        document.getElementById('answer1').innerHTML = "Not Right!"
+        document.getElementById('result1').innerHTML = "Not Right!"
     }
 </script>
 <body style="background-color:orangered; height: fit-content">
@@ -59,14 +59,14 @@
         </br>
         <img id="beanie" src="static/rohanblackbeanie.jpg" width="1000" height="600">
         </br>
-        <p>
-            </br>
-            <iframe
-                    width="1000"
-                    height="500"
-                    src="https://docs.google.com/document/d/1caGFdefkHrh74c3f_iuIx26mDD3QnP0FDM9cpS8BYFM/edit?usp=sharing"
-            ></iframe>
-        </p>
+{#        <p>#}
+{#            </br>#}
+{#            <iframe#}
+{#                    width="1000"#}
+{#                    height="500"#}
+{#                    src="https://docs.google.com/document/d/1caGFdefkHrh74c3f_iuIx26mDD3QnP0FDM9cpS8BYFM/edit?usp=sharing"#}
+{#            ></iframe>#}
+{#        </p>#}
         <label for="value1">Guess my Lucky Number!</label>
         </br>
         <input  id="value1" type="number" />
@@ -80,7 +80,7 @@
     <label for="answer">What is the answer?</label>
     <input id="answer" type="text" />
     <input type="submit" onclick="AnswerFunction();">
-    <p id="answer1"> </p>
+    <p id="result1"> </p>
     </div>
     </br>
 {#    <input  id="answer" type="text" />#}
