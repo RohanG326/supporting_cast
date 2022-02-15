@@ -7,14 +7,13 @@
 <!- This is a replacement block for Body in base.html -->
 {% block body %}
     <script>
-
+        <h1 id="mainheader"> Find your Hotel </h1>
     </script>
-
-    <body style="background-color:powderblue; height: 1000px">
-
-    <h1 style="text-align: center; color: midnightblue">
-        Interactive Map
-    </h1>
+    <style>
+    mainheader{
+        font-family: "Times New Roman";
+    }
+    </style>
 
     <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d26762.24393255757!2d-117.13822899999998!3d33.02274!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1641454282715!5m2!1sen!2sus" width="1900" height="700" style="border:0;" allowfullscreen="" loading="eager"></iframe>
 {% endblock %}
