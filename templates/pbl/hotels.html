@@ -54,6 +54,34 @@
         /*    width: 75%;*/
         /*    margin: auto;*/
         /*}*/
+        h1 {
+            --interval: 5s;
+            display: block;
+            text-shadow:
+                    0 0 10px var(--color1),
+                    0 0 20px var(--color2),
+                    0 0 40px var(--color3),
+                    0 0 80px var(--color4);
+            will-change: filter, color;
+            filter: saturate(60%);
+            animation: flicker steps(100) var(--interval) 1s infinite;
+        }
+        h1{
+            color: sandybrown;
+            --color1: #D2B48C;
+            --color2: #80471C;
+            --color3: #65350F;
+            --color4: #9A7B4F;
+            font-family: "Times New Roman";
+            font-size:70px;
+        }
+
+        @keyframes flicker {
+            50% {
+                color: white;
+                filter: saturate(200%) hue-rotate(20deg);
+            }
+        }
         html, body {
             overflow: auto;
         }
