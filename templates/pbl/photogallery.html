@@ -3,154 +3,174 @@
 {% set project = "Photo Gallery" %}
 
 {% block body %}
-<div class="container">
-    <br>
-    <br>
-    <img id="photogallery" src="/static/photogallery.PNG">
-    <div id="title">  Photo Gallery </div>
-    <div id="subheading"> Amazing pictures from around the world! </div>
-</div>
-
-
-<script>
-    function beaches() {
-        const imageBeach = ["http://cdn.cnn.com/cnnnext/dam/assets/181010131059-australia-best-beaches-cossies-beach-cocos3.jpg",
-            "https://www.fodors.com/wp-content/uploads/2019/02/Hero-Polynesias-Most-Beautiful-Beaches-01-shutterstock_490921198.jpg",
-            "https://cff2.earth.com/uploads/2017/12/15200510/10-of-Earth%E2%80%99s-most-beautiful-beaches.jpg",
-            "https://ssl.tzoo-img.com/images/blog/legacyblog/us/wp-content/uploads/2018/02/6_WhitehavenBeach_Australia_shutterstock_378831505.jpg?width=412&spr=3",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0wcA2rDrNvlUnYnO1MUv_CY0C9Bhbg2cQ5A&usqp=CAU"
-        ];
-        for(i=0;i<imageBeach.length;i++){
-            image='image'+i;
-            document.getElementById(image).src=imageBeach[i];
-            document.getElementById(image).hidden = false;
-        }
-    }
-
-    function mountains() {
-        const imageMountain = [
-            "http://4.bp.blogspot.com/-uC1l4GRa2d4/VKRCSbpwelI/AAAAAAAAA2I/kwW4iwzSfkc/s1600/3.jpg",
-            "http://earthporm.com/wp-content/uploads/2015/04/Imaginary-Waters-Photo-By-Jon-Glaser.jpeg",
-            "https://img.traveltriangle.com/blog/wp-content/tr:w-700,h-400/uploads/2018/09/Kirkjufell.jpg",
-            "https://www.rockymtnresorts.com/wp-content/uploads/2019/08/Bear-Lake.jpg",
-            "https://www.planetware.com/wpimages/2019/05/montana-in-pictures-most-beautiful-places-to-visit-logan-pass.jpg"];
-        for (i = 0; i < imageMountain.length; i++) {
-            image = 'image' + i;
-            document.getElementById(image).src = imageMountain[i];
-            document.getElementById(image).hidden = false;
-        }
-    }
-
-    function forests() {
-        const imageForest = [
-            "https://www.timeforkids.com/wp-content/uploads/2019/09/final-cover-forest.jpg",
-            "https://loveincorporated.blob.core.windows.net/contentimages/gallery/08afbe0f-350d-480d-9421-57274208714e-Black_forest_germany.jpg",
-            "https://i.insider.com/5ab921ea095b1142028b45d8?width=1000&format=jpeg&auto=webp",
-            "https://swall.teahub.io/photos/small/29-299078_beautiful-forest-in-india.jpg",
-            "https://s3.envato.com/files/3e3faafa-fb2b-48d5-8f73-821d53bbf7d1/inline_image_preview.jpg",
-        ];
-        for (i = 0; i < imageForest.length; i++) {
-            image = 'image' + i;
-            document.getElementById(image).src = imageForest[i];
-            document.getElementById(image).hidden = false;
-        }
-    }
-
-    function cities() {
-        const imageCity = [
-            "https://i0.wp.com/theluxurytravelexpert.com/wp-content/uploads/2014/01/new-york-city-usa.jpg?ssl=1",
-            "https://loveincorporated.blob.core.windows.net/contentimages/gallery/c2a4527b-ebdd-451a-8cde-c0f2e6838138-beautifulcities_Shanghai.jpg",
-            "https://assets.poland.us/files_proxy/artykuly/file5f4a6a0525b74.202008291045.jpg",
-            "https://loveincorporated.blob.core.windows.net/contentimages/gallery/c8974887-248d-470c-bbc7-d73d36f6908c-Florence-Italy-2021.jpg",
-            "https://www.pandotrip.com/wp-content/uploads/2016/04/Heidelberg3-740x493.jpg"
-        ];
-        for (i = 0; i < imageCity.length; i++) {
-            image = 'image' + i;
-            document.getElementById(image).src = imageCity[i];
-            document.getElementById(image).hidden = false;
-        }
-    }
-
-</script>
-<div class="search_input" style="text-align: center">
-    <div class="col-0">
-        <form action="/photogallery" id="greet" method="POST">
-            <label for="input">Search for a location</label>
-            <br>
-            <input name="input" id="input" />
-            <input type="submit" value="Search" />
-        </form>
-        <p>Your input was: {{input1}}</p>
-        <script>
-            if(input1.getElementById(greet)=="San Diego")
-            {
-                cities();
-            }
-        </script>
+    <div class="container">
+        <br>
+        <br>
+        <h1>
+            <span>Photogallery</span>
+        </h1>
+        {#    <div id="subheading"> Amazing pictures from around the world! </div>#}
     </div>
-</div>
 
-<div class="search_buttons">
-    <input type="button" style="width:200px" onclick="beaches()" value="Beaches" />
-    <input type="button" style="width:200px" onclick="mountains()" value="Mountains"/>
-    <input type="button" style="width:200px" onclick="forests()" value="Forests"/>
-    <input type="button" style="width:200px" onclick="cities()" value="Cities"/>
-    <br>
-    <img src="https://www.iconsdb.com/icons/preview/white/square-xxl.png" id="image0" width="900" height="750" hidden="hidden">
-    <br>
-    <img src="https://www.iconsdb.com/icons/preview/white/square-xxl.png" id="image1" width="900" height="750" hidden="hidden">
-    <br>
-    <img src="https://www.iconsdb.com/icons/preview/white/square-xxl.png" id="image2" width="900" height="750" hidden="hidden">
-    <br>
-    <img src="https://www.iconsdb.com/icons/preview/white/square-xxl.png" id="image3" width="900" height="750" hidden="hidden">
-    <br>
-    <img src="https://www.iconsdb.com/icons/preview/white/square-xxl.png" id="image4" width="900" height="750" hidden="hidden">
-    <br>
-    <br>
-</div>
 
-<style>
-    #photogallery{
-        padding-top: 80px;
-        position: absolute;
-        left: 300px;
-    }
-    #title{
-        top: 40px;
-        left: 300px;
-        position: relative;
-        font-size:75px;
-        font-weight: bold;
-        font-family: "Times New Roman";
-    }
-    #subheading{
-        top: 30px;
-        left: 300px;
-        font-size:30px;
-        font-weight: bold;
-        font-family: "Times New Roman";
-        position:relative;
+    <script>
+        function beaches() {
+            const imageBeach = ["http://cdn.cnn.com/cnnnext/dam/assets/181010131059-australia-best-beaches-cossies-beach-cocos3.jpg",
+                "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg",
+                "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg",
+                "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg",
+                "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg"
+            ];
+            for(i=0;i<imageBeach.length;i++){
+                image='image'+i;
+                document.getElementById(image).src=imageBeach[i];
+                document.getElementById(image).hidden = false;
+            }
+        }
 
-    }
-    container {
-        position: relative;
-        text-align: center;
-        color: white;
-    }
-    .search_input{
-        padding-top: 100px;
-        position: relative;
-    }
-    .search_buttons{
-        padding-top: 20px;
-        padding-left: 200px;
-        position: relative;
-    }
+        function mountains() {
+            const imageMountain = [
+                "https://th-thumbnailer.cdn-si-edu.com/_fo23UThzt2yYi8vrV0jcafbQ3Q=/fit-in/1600x0/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/25/f0/25f08cff-0355-4001-86ad-28950a866af4/grandteton.jpg",
+                "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg",
+                "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg",
+                "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg",
+                "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg"];
+            for (i = 0; i < imageMountain.length; i++) {
+                image = 'image' + i;
+                document.getElementById(image).src = imageMountain[i];
+                document.getElementById(image).hidden = false;
+            }
+        }
 
-    html,body{
-        background-color: saddlebrown;
-        min-height:200%
-    }
-</style>
+        function forests() {
+            const imageForest = [
+                "https://www.timeforkids.com/wp-content/uploads/2019/09/final-cover-forest.jpg",
+                "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg",
+                "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg",
+                "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg",
+                "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg",
+            ];
+            for (i = 0; i < imageForest.length; i++) {
+                image = 'image' + i;
+                document.getElementById(image).src = imageForest[i];
+                document.getElementById(image).hidden = false;
+            }
+        }
+
+        function cities() {
+            const imageCity = [
+                "https://static01.nyt.com/images/2020/07/17/business/00virus-cities1/00virus-cities1-mediumSquareAt3X.jpg",
+                "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg",
+                "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg",
+                "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg",
+                "https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg"
+            ];
+            for (i = 0; i < imageCity.length; i++) {
+                image = 'image' + i;
+                document.getElementById(image).src = imageCity[i];
+                document.getElementById(image).hidden = false;
+            }
+        }
+
+    </script>
+    <div class="search_input" style="text-align: center">
+        <div class="col-0">
+            <form action="/photogallery" id="greet" method="POST">
+                <label for="input">Search for a location</label>
+                <br>
+                <input name="input" id="input" />
+                <input type="submit" value="Search" />
+            </form>
+            <p>Your input was: {{input1}}</p>
+            <script>
+                if(input1.getElementById(greet)=="San Diego")
+                {
+                    cities();
+                }
+            </script>
+        </div>
+    </div>
+
+    <div class="search_buttons">
+        <input type="button" style="width:200px" onclick="beaches()" value="Beaches" />
+        <input type="button" style="width:200px" onclick="mountains()" value="Mountains"/>
+        <input type="button" style="width:200px" onclick="forests()" value="Forests"/>
+        <input type="button" style="width:200px" onclick="cities()" value="Cities"/>
+        <br>
+        <img src="https://www.iconsdb.com/icons/preview/white/square-xxl.png" id="image0" width="900" height="750" hidden="hidden">
+        <br>
+        <img src="https://www.iconsdb.com/icons/preview/white/square-xxl.png" id="image1" width="900" height="750" hidden="hidden">
+        <br>
+        <img src="https://www.iconsdb.com/icons/preview/white/square-xxl.png" id="image2" width="900" height="750" hidden="hidden">
+        <br>
+        <img src="https://www.iconsdb.com/icons/preview/white/square-xxl.png" id="image3" width="900" height="750" hidden="hidden">
+        <br>
+        <img src="https://www.iconsdb.com/icons/preview/white/square-xxl.png" id="image4" width="900" height="750" hidden="hidden">
+        <br>
+        <br>
+    </div>
+
+    <style>
+        h1 {
+            --interval: 5s;
+            display: block;
+            text-shadow:
+                    0 0 10px var(--color1),
+                    0 0 20px var(--color2),
+                    0 0 40px var(--color3),
+                    0 0 80px var(--color4);
+            will-change: filter, color;
+            filter: saturate(60%);
+            animation: flicker steps(100) var(--interval) 1s infinite;
+        }
+        mainheader{
+            font-size: 120px;
+        }
+        h1{
+            color: sandybrown;
+            --color1: #D2B48C;
+            --color2: #80471C;
+            --color3: #65350F;
+            --color4: #9A7B4F;
+            font-family: "Times New Roman";
+            font-size:120px;
+        }
+
+        @keyframes flicker {
+            50% {
+                color: white;
+                filter: saturate(200%) hue-rotate(20deg);
+            }
+        }
+        html, body {
+            overflow: auto;
+        }
+        h1{
+            font-family: "Times New Roman";
+        }
+        container {
+            position: relative;
+            text-align: center;
+            color: black;
+        }
+        .search_input{
+            padding-top: 100px;
+            position: relative;
+        }
+        .search_buttons{
+            padding-top: 20px;
+            padding-left: 200px;
+            position: relative;
+        }
+
+        html,body{
+            background: url("/static/camerapic.PNG");
+            min-height: 130%;
+            min-width: 100%;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+    </style>
 
 {% endblock %}
