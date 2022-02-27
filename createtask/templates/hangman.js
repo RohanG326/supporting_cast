@@ -1,19 +1,49 @@
 //get data
+//json from https://github.com/dwyl/english-words/
+let fiveLetter = [];
+let sevenLetter = [];
+let nineLetter = [];
+fetch('words_dictionary.json')
+    .then(
+        function(response) {
+            if (response.status !== 200) {
+                console.log('There was an issue');
+                return;
+            }
 
-let fiveLetter = [
-    "hares",
-    "bears"
-];
-
-let sevenLetter = [
-    "brioche",
-    "crashed"
-];
-
-let nineLetter = [
-    "abilities",
-    "recognize"
-];
+            response.json().then(function(data) {
+                let objectKeys = Object.keys(data);
+                for (let i=0; i<objectKeys.length; i++){
+                    if (objectKeys[i].length==5){
+                        fiveLetter.push(objectKeys[i]);
+                    }
+                    else if (objectKeys[i].length==7){
+                        sevenLetter.push(objectKeys[i]);
+                    }
+                    else if (objectKeys[i].length==9){
+                        nineLetter.push(objectKeys[i]);
+                    }
+                }
+            });
+        }
+    )
+    .catch(function(err) {
+        console.log('Fetch Error');
+    });
+// let fiveLetter = [
+//     "hares",
+//     "bears"
+// ];
+//
+// let sevenLetter = [
+//     "brioche",
+//     "crashed"
+// ];
+//
+// let nineLetter = [
+//     "abilities",
+//     "recognize"
+// ];
 
 var word = null;
 var wrongGuess = 0;
@@ -21,6 +51,7 @@ var letterCheckArray = [];
 var checkedLetters = [];
 
 function startGame (difficulty) {
+    document.getElementById("message").innerText = "";
     //choose the array to select from based on difficulty
     let arrayToChooseFrom;
     if (difficulty==0){
@@ -43,7 +74,7 @@ function startGame (difficulty) {
         letterCheckArray.push(false);
     }
     //hide difficulty selection elements
-    document.getElementById("selction").style.display="none";
+    document.getElementById("selection").style.display="none";
     //show game elements
     document.getElementById("game").style.display="block";
     //update display
@@ -51,6 +82,7 @@ function startGame (difficulty) {
 }
 
 function guess (letter) {
+    document.getElementById(userInput.value="")
     if (word == null || letterCheckArray.length < 1 || letter == "") {
         return;
     }
@@ -67,7 +99,7 @@ function guess (letter) {
     //if the string doesn't include the letter, increment wrongGuess. If it does,
     //find the index of each instance of the letter in word, then set letterCheckArray to true at that index
     if (word.includes(letter)){
-        for (let i=0; i<word.length: i++){
+        for (let i=0; i<word.length; i++){
             if (letter==word[i]){
                 letterCheckArray[i]=true;
             }
@@ -96,7 +128,7 @@ function checkGameStatus() {
     //check whether every index of letterCheckArray is true
     //if a single one is false, set indexCheck to false and break the loop
     let indexCheck = true;
-    for (let i=0, i<letterCheckArray.length; i++){
+    for (let i=0; i<letterCheckArray.length; i++){
         if (letterCheckArray[i]==false){
             indexCheck=false;
             break;
@@ -112,6 +144,7 @@ function checkGameStatus() {
 }
 
 function displayWord () {
+    document.getElementById("checkedLetter").innerText = checkedLetters;
     if (word == null || letterCheckArray.length < 1) {
         return;
     }
@@ -121,7 +154,7 @@ function displayWord () {
     //also add newline character \n if it's a space, in order to separate the words
     let stringToDisplay = "";
     //add a loop here
-    for (let i=0, i<letterCheckArray.length; i++){
+    for (let i=0; i<letterCheckArray.length; i++){
         if (letterCheckArray[i]==true){
             stringToDisplay+=word[i]+ " ";
         }
@@ -131,4 +164,9 @@ function displayWord () {
     }
 
     document.getElementById("wordDisplay").innerText = stringToDisplay;
+}
+
+function backButton () {
+    document.getElementById("game").style.display="none";
+    document.getElementById("selection").style.display="block";
 }
