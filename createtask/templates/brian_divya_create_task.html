@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="selection">
+        <div id="gameResultText"></div>
+        <button onclick="startGame(0)">Easy</button>
+        <button onclick="startGame(1)">Medium</button>
+        <button onclick="startGame(2)">Hard</button>
+    </div>
+    <div id="game" style="display:none;">
+        <img id="hangmanImage" src="img/0.png"></img>
+        <br>
+        <div id="wordDisplay"></div>
+        <br>
+        <div id="message"></div>
+        <input type="text" id="userInput"></input>
+        <button onclick="guess(document.getElementById('userInput').value)">Guess!</button>
+    </div>
+
+    <script src="hangman.js"></script>
+    </body>
+</html>
