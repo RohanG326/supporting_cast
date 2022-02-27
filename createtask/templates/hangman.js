@@ -121,6 +121,14 @@ function displayWord () {
     //also add newline character \n if it's a space, in order to separate the words
     let stringToDisplay = "";
     //add a loop here
+    for (let i=0, i<letterCheckArray.length; i++){
+        if (letterCheckArray[i]==true){
+            stringToDisplay+=word[i]+ " ";
+        }
+        else{
+            stringToDisplay+="_ ";
+        }
+    }
 
     document.getElementById("wordDisplay").innerText = stringToDisplay;
 }
