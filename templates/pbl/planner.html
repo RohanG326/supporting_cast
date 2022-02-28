@@ -10,9 +10,7 @@
 
     <!-- Editable table -->
     <div class="card">
-        <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
-            Travel Planner
-        </h3>
+        <h1 id="mainheader"> Planner </h1>
         <div class="card-body">
             <div id="table" class="table-editable">
       <span class="table-add float-right mb-3 mr-2"
@@ -90,6 +88,51 @@
     $EXPORT.text(JSON.stringify(data)); });
 
     </script>
+    <style>
+    body{
+        background: url("/static/planner.PNG");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+    h1 {
+        --interval: 5s;
+        display: block;
+        text-shadow:
+                0 0 10px var(--color1),
+                0 0 20px var(--color2),
+                0 0 40px var(--color3),
+                0 0 80px var(--color4);
+        will-change: filter, color;
+        filter: saturate(60%);
+        animation: flicker steps(100) var(--interval) 1s infinite;
+    }
+    mainheader{
+        font-size: 120px;
+    }
+    h1{
+        color: sandybrown;
+        --color1: #D2B48C;
+        --color2: #80471C;
+        --color3: #65350F;
+        --color4: #9A7B4F;
+        font-family: "Times New Roman";
+        font-size:120px;
+    }
+
+    @keyframes flicker {
+        50% {
+            color: white;
+            filter: saturate(200%) hue-rotate(20deg);
+        }
+    }
+    html, body {
+        overflow: auto;
+    }
+    h1{
+        font-family: "Times New Roman";
+    }
+    </style>
 
 {% endblock %}
 

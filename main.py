@@ -57,6 +57,9 @@ def navbarsearch():
 def searchtest():
     return render_template("searchtest.html", darkmode=darkmode)
 
+@app.route('/hangman/')
+def hangman():
+    return render_template("brian_divya_create_task.html", darkmode=darkmode)
 
 @app.route('/darkmode', methods=['GET', 'POST'])
 def toggleDarkMode():

@@ -15,14 +15,19 @@
     .form input[type=text] {
         background-color: white;
         background-image: url('searchicon.png');
-        background-position: 10px 10px;
+        background-position: 20px 20px;
         background-repeat: no-repeat;
-        padding-left: 40px;
+        position:relative;
+        left:800px;
+        top:180px;
     }
     .form input[type=text]:focus {
+
     }
     .button{
-
+        position:relative;
+        left:800px;
+        top:180px;
     }
     /*table, td, th {*/
     /*    border: 4px solid midnightblue;*/
@@ -37,12 +42,51 @@
         width: 75%;
         margin: auto;
     }
+    body{
+        background: url("/static/sky 2.0.PNG");
+        min-height: 130%;
+        min-width: 100%;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+    h1 {
+        --interval: 5s;
+        display: block;
+        text-shadow:
+                0 0 10px var(--color1),
+                0 0 20px var(--color2),
+                0 0 40px var(--color3),
+                0 0 80px var(--color4);
+        will-change: filter, color;
+        filter: saturate(60%);
+        animation: flicker steps(100) var(--interval) 1s infinite;
+    }
+    mainheader{
+        font-size: 120px;
+    }
+    h1{
+        color: sandybrown;
+        --color1: #D2B48C;
+        --color2: #80471C;
+        --color3: #65350F;
+        --color4: #9A7B4F;
+        font-family: "Times New Roman";
+        font-size:120px;
+    }
+
+    @keyframes flicker {
+        50% {
+            color: white;
+            filter: saturate(200%) hue-rotate(20deg);
+        }
+    }
 
 </style>
 
     <div class="center-block" style="font-family: gilroy,serif;">
         <div style="text-align: center;">
-            <h1 style="color: midnightblue">City Weather Data</h1>
+            <h1 id="mainheader"> Weather </h1>
         </div>
         {% if results %}
         <div class=center-block">

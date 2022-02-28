@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <h1 id="mainheader"> Hangman </h1>
+</head>
+<body>
+    <div id="selection">
+        <div id="gameResultText"></div>
+        <button onclick="startGame(0)">Easy</button>
+        <button onclick="startGame(1)">Medium</button>
+        <button onclick="startGame(2)">Hard</button>
+    </div>
+    <div id="game" style="display:none;">
+        <div id="checkedLetter"></div>
+        <img id="hangmanImage" src="../../static/hangman_resources/img/0.png"></img>
+        <br>
+        <div id="wordDisplay"></div>
+        <br>
+        <div id="message"></div>
+        <input type="text" id="userInput"></input>
+        <br>
+        <button onclick="guess(document.getElementById('userInput').value)">Guess!</button>
+        <button onclick="backButton()">Back to Home</button>
+    </div>
+
+    <script>
+        //get data
+        //json from https://github.com/dwyl/english-words/
+        let fiveLetter = [];
+        let sevenLetter = [];
+        let nineLetter = [];
+        fetch('../../static/hangman_resources/words_dictionary.json')
+            .then(
+                function(response) {
+                    if (response.status !== 200) {
+                        console.log('There was an issue');
+                        return;
+                    }
+
+                    response.json().then(function(data) {
+                        let objectKeys = Object.keys(data);
+                        for (let i=0; i<objectKeys.length; i++){
+                            if (objectKeys[i].length==5){
+                                fiveLetter.push(objectKeys[i]);
+                            }
+                            else if (objectKeys[i].length==7){
+                                sevenLetter.push(objectKeys[i]);
+                            }
+                            else if (objectKeys[i].length==9){
+                                nineLetter.push(objectKeys[i]);
+                            }
+                        }
+                    });
+                }
+            )
+            .catch(function(err) {
+                console.log('Fetch Error');
+            });
+        // let fiveLetter = [
+        //     "hares",
+        //     "bears"
+        // ];
+        //
+        // let sevenLetter = [
+        //     "brioche",
+        //     "crashed"
+        // ];
+        //
+        // let nineLetter = [
+        //     "abilities",
+        //     "recognize"
+        // ];
+
+        var word = null;
+        var wrongGuess = 0;
+        var letterCheckArray = [];
+        var checkedLetters = [];
+
+        function startGame (difficulty) {
+            document.getElementById("message").innerText = "";
+            //choose the array to select from based on difficulty
+            let arrayToChooseFrom;
+            if (difficulty==0){
+                arrayToChooseFrom=fiveLetter;
+            }
+            else if (difficulty==1){
+                arrayToChooseFrom=sevenLetter;
+            }
+            else if (difficulty==2){
+                arrayToChooseFrom=nineLetter;
+            }
+            //select a word
+            word = arrayToChooseFrom[Math.floor(Math.random() * arrayToChooseFrom.length)];
+            //reset checkedLetters and wrongGuess
+            checkedLetters = [];
+            wrongGuess = 0;
+            //set letterCheckArray to an array length = word length filled with false, except spaces are true
+            letterCheckArray = [];
+            for (let i=0; i<word.length; i++){
+                letterCheckArray.push(false);
+            }
+            //hide difficulty selection elements
+            document.getElementById("selection").style.display="none";
+            //show game elements
+            document.getElementById("game").style.display="block";
+            //if hard mode, reduce lives by 1
+            if (difficulty==2){
+                guess(7);
+            }
+            //update display
+            displayWord();
+        }
+
+        function guess (letter) {
+            document.getElementById(userInput.value="")
+            if (word == null || letterCheckArray.length < 1 || letter == "") {
+                return;
+            }
+            //validate single letter check
+            if (letter.length > 1) {
+                document.getElementById("message").innerText = "Only one letter at a time";
+                return;
+            }
+            //don't guess the same letter again
+            if (checkedLetters.includes(letter)) {
+                document.getElementById("message").innerText = "You already guessed " + letter;
+                return;
+            }
+            //if the string doesn't include the letter, increment wrongGuess. If it does,
+            //find the index of each instance of the letter in word, then set letterCheckArray to true at that index
+            if (word.includes(letter)){
+                for (let i=0; i<word.length; i++){
+                    if (letter==word[i]){
+                        letterCheckArray[i]=true;
+                    }
+                }
+            }
+            else{
+                document.getElementById("message").innerText = "The word does not include the letter " + letter;
+                wrongGuess=wrongGuess+1;
+            }
+            //add letter to checkedLetters
+            checkedLetters.push(letter);
+            //check the game status
+            checkGameStatus();
+            //lastly, update the display
+            displayWord();
+        }
+
+        function checkGameStatus() {
+            //if wrongGuess is 6 or higher, put "You lose" in gameResultText, display the selection div, hide the game div, and return
+            if (wrongGuess>=6){
+                document.getElementById("gameResultText").innerText = "Game Over";
+                document.getElementById("game").style.display="none";
+                document.getElementById("selection").style.display="block";
+                return;
+            }
+            //check whether every index of letterCheckArray is true
+            //if a single one is false, set indexCheck to false and break the loop
+            let indexCheck = true;
+            for (let i=0; i<letterCheckArray.length; i++){
+                if (letterCheckArray[i]==false){
+                    indexCheck=false;
+                    break;
+                }
+            }
+            //if every index of letterCheckArray is true, put "You win" in gameResultText, display the selection div, hide the game div, and return
+            if (indexCheck==true){
+                document.getElementById("gameResultText").innerText = "You Win";
+                document.getElementById("game").style.display="none";
+                document.getElementById("selection").style.display="block";
+                return;
+            }
+        }
+
+        function displayWord () {
+            document.getElementById("checkedLetter").innerText = checkedLetters;
+            if (word == null || letterCheckArray.length < 1) {
+                return;
+            }
+            //set src of the hangmanImage to the image matching the number of mistakes
+            document.getElementById("hangmanImage").src = "../../static/hangman_resources/img/" + wrongGuess.toString() + ".png";
+            //display "_ " for each unguessed letter, "{letter} " for each correctly guessed letter
+            //also add newline character \n if it's a space, in order to separate the words
+            let stringToDisplay = "";
+            //add a loop here
+            for (let i=0; i<letterCheckArray.length; i++){
+                if (letterCheckArray[i]==true){
+                    stringToDisplay+=word[i]+ " ";
+                }
+                else{
+                    stringToDisplay+="_ ";
+                }
+            }
+
+            document.getElementById("wordDisplay").innerText = stringToDisplay;
+        }
+
+        function backButton () {
+            document.getElementById("game").style.display="none";
+            document.getElementById("selection").style.display="block";
+        }
+    </script>
+<style>
+    h1 {
+        --interval: 5s;
+        display: block;
+        text-shadow:
+                0 0 10px var(--color1),
+                0 0 20px var(--color2),
+                0 0 40px var(--color3),
+                0 0 80px var(--color4);
+        will-change: filter, color;
+        filter: saturate(60%);
+        animation: flicker steps(100) var(--interval) 1s infinite;
+    }
+    mainheader{
+        font-size: 120px;
+    }
+    h1{
+        color: sandybrown;
+        --color1: #D2B48C;
+        --color2: #80471C;
+        --color3: #65350F;
+        --color4: #9A7B4F;
+        font-family: "Times New Roman";
+        font-size:180px;
+    }
+
+    @keyframes flicker {
+        50% {
+            color: white;
+            filter: saturate(200%) hue-rotate(20deg);
+        }
+    }
+    html, body {
+        overflow: auto;
+    }
+    h1{
+        font-family: "Times New Roman";
+        left:34%;
+    }
+    body{
+        background: url("/static/backgroundlol.PNG");
+        min-height: 400%;
+        max-width:100%;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+    .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+    }
+
+    .opacity-50 { opacity: .5; }
+    .opacity-75 { opacity: .75; }
+
+    .list-group {
+        width: auto;
+        max-width: 460px;
+        margin: 4rem auto;
+    }
+
+    .form-check-input:checked + .form-checked-content {
+        opacity: .5;
+    }
+
+    .form-check-input-placeholder {
+        pointer-events: none;
+        border-style: dashed;
+    }
+    [contenteditable]:focus {
+        outline: 0;
+    }
+
+    .list-group-checkable {
+        display: grid;
+        gap: .5rem;
+        border: 0;
+    }
+    .list-group-checkable .list-group-item {
+        cursor: pointer;
+        border-radius: .5rem;
+    }
+    .list-group-item-check {
+        position: absolute;
+        clip: rect(0, 0, 0, 0);
+        pointer-events: none;
+    }
+    .list-group-item-check:hover + .list-group-item {
+        background-color: var(--bs-light);
+    }
+    .list-group-item-check:checked + .list-group-item {
+        color: #fff;
+        background-color: var(--bs-blue);
+    }
+    .list-group-item-check[disabled] + .list-group-item,
+    .list-group-item-check:disabled + .list-group-item {
+        pointer-events: none;
+        filter: none;
+        opacity: .5;
+    }
+    /*button{*/
+    /*    position:relative;*/
+    /*    left:800px;*/
+    /*}*/
+</style>
+    </body>
+</html>
