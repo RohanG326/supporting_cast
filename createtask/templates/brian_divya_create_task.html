@@ -104,6 +104,10 @@
             document.getElementById("selection").style.display="none";
             //show game elements
             document.getElementById("game").style.display="block";
+            //if hard mode, reduce lives by 1
+            if (difficulty==2){
+                guess(7);
+            }
             //update display
             displayWord();
         }
