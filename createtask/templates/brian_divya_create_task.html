@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <h1 id="mainheader"> Hangman </h1>
-    <h2 id="levelchose">Choose your Level!</h2>
 </head>
 <body>
     <div id="selection">
@@ -221,7 +220,7 @@
         --color3: #65350F;
         --color4: #9A7B4F;
         font-family: "Times New Roman";
-        font-size:120px;
+        font-size:180px;
     }
 
     @keyframes flicker {
@@ -235,13 +234,12 @@
     }
     h1{
         font-family: "Times New Roman";
-        position:absolute;
         left:34%;
     }
     body{
         background: url("/static/backgroundlol.PNG");
         min-height: 200%;
-        min-width: 100%;
+        max-width:100%;
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -308,7 +306,7 @@
         opacity: .5;
     }
     button{
-        position:absolute;
+        position:relative;
         left:800px;
     }
 </style>
