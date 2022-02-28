@@ -15,12 +15,9 @@ def swap(age1, age2):
 matrix = [ [1,2,3],[4,5,6],[7,8,9] ]
 def formatting():
     for x in range(len(matrix)):
-        for y in range(len(matrix)):
+        for y in range(len(matrix[x])):
             print(matrix[x][y], end=" ")
         print()
-
-        # for a in range(len(matrix[1])):
-        #     print(a)
 
 
 # if __name__ == "__main__":
@@ -28,6 +25,7 @@ def formatting():
 #     input2 = input("second age")
 #     a, b = swap(input1, input2)
 #     print(a, b)
+
 
 
 if __name__ == "__main__":
