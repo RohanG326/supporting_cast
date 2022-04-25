@@ -3,14 +3,24 @@
 {% set project = "Create Task" %}
 
 {% block body %}
-
-    <form action="/ct/createtask/" method="POST" class="form">
-        <h2>{{ randomValue.question }}</h2>
+    <body style="background-color:powderblue; height: 100%">
+    <h1 style="text-align: center; color: midnightblue">
+        Trivia!
+    </h1>
+    <p style = "position: relative; text-align: center; font-weight: bolder; font-size: large"> Capitalize all answers and proper nouns</p>
+    <form action="/ct/createtask/?answer={{ randomvalue.answer }}" method="POST" class="form" style = "position: relative; text-align: center;">
+        <h2 style="color:midnightblue">{{ randomvalue.question }}</h2>
         <input type="text" placeholder="Enter Your Answer" name='userinput'>
         <button type="submit">Submit</button>
     </form>
-    <h2>{{ "Correct answer was: " + randomValue.answer }}</h2>
-
+{#    <h2 style = "position: relative; text-align: center;">Correct answer was: {{ randomvalue.answer }} </h2>#}
+    <h2 style = "position: relative; text-align: center; font-weight: bolder; font-size: large"> Score: {{ score1 }}</h2>
+<h2 style = "position: relative; text-align: center; font-weight: bolder; font-size: large;color: midnightblue">{{ display }}</h2>
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
 
 {% endblock %}
 

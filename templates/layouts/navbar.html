@@ -146,6 +146,17 @@
             </div>
         </li>
     </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Create Tasks
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="nav-link" href="{{ url_for('createtask.createtask') }}">Adi Create Task</a>
+                <a class="nav-link" href="{{ url_for('createtask.rohancreatetask') }}">Rohan Create Task</a>
+            </div>
+        </li>
+    </div>
     <div class="container">
         <div class="row">
             <form action="/navbarsearch" id="navbarsearch" method="POST">
