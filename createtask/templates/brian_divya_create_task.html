@@ -3,11 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <h1 id="mainheader"> Hangman </h1>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        div {
+            padding: 20px;
+            margin: auto;
+        }
+        #wordDisplay {
+            border: 1px solid black;
+            width: 50%;
+        }
+        body>table{
+            margin:auto;
+        }
+        body>h1{
+            margin:auto;
+            width:50%;
+            text-align:center;
+        }
+        body>div{
+            margin:auto;
+            width:30%;
+        }
+        div>button{
+            margin-left:10%;
+            width:20%;
+        }
+        div>input{
+            margin-left:20%;
+        }
+        div>img{
+            left:50%;
+        }
+        #homeButton{
+            width:40%;
+        }
+    </style>
 </head>
 <body>
-    <div id="wins"></div>
-    <div id="losses"></div>
-    <div id="highScore"></div>
+    <table>
+        <tr>
+            <td>
+                <div id="wins"></div>
+            </td>
+            <td>
+                <div id="losses"></div>
+            </td>
+            <td>
+                <div id="highScore"></div>
+            </td>
+        </tr>
+    </table>
     <div id="selection">
         <div id="gameResultText"></div>
         <button onclick="startGame(0)">Easy</button>
@@ -23,8 +72,9 @@
         <div id="message"></div>
         <input type="text" id="userInput"></input>
         <br>
+        <br>
         <button onclick="guess(document.getElementById('userInput').value)">Guess!</button>
-        <button onclick="backButton()">Back to Home</button>
+        <button id="homeButton" onclick="backButton()">Back to Home</button>
     </div>
 
     <script>
@@ -96,9 +146,11 @@
         var wrongGuess = 0;
         var letterCheckArray = [];
         var checkedLetters = [];
+        var difficultySetting = 0;
 
         function startGame (difficulty) {
             guessCount=0
+            difficultySetting=difficulty
             document.getElementById("message").innerText = "";
             //choose the array to select from based on difficulty
             let arrayToChooseFrom;
@@ -159,11 +211,15 @@
                 }
             }
             else{
-                document.getElementById("message").innerText = "The word does not include the letter " + letter;
+                if (!(difficultySetting==2 && letter==7 && wrongGuess==0)) {
+                    document.getElementById("message").innerText = "The word does not include the letter " + letter;
+                }
                 wrongGuess=wrongGuess+1;
             }
             //add letter to checkedLetters
-            checkedLetters.push(letter);
+            if (!(difficultySetting==2 && letter==7 && wrongGuess==1)) {
+                checkedLetters.push(letter);
+            }
             //check the game status
             checkGameStatus();
             //lastly, update the display
