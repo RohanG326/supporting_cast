@@ -1,55 +1,96 @@
 {% extends "layouts/base.html" %}
 {% set project = "Creating Tasks is so Cool" %}
 {% block body %}
+<style>
+    body {
+        background-color: aquamarine;
+    }
+</style>
 <script>
+{#Initializes the variables#}
     let score = 0
-    class Trivia {
+    let total = 0
+    let count = 0
+    let correct = 0
+{# Creates a class with the constructor methods for one object, (Question, Answer, and Point Values) #}
+    class Jeopardy {
         constructor(question, answer, point) {
             this.question = question;
             this.answer = answer;
             this.point = point;
         }
-
+    {# Check Answer Method to use later on the object #}
         CheckAnswer(guess) {
             return guess === this.answer
         }
     }
-    let question1 = new Trivia('Chile?', 'Santiago', 1);
-    let question2 = new Trivia('France?', 'Paris', 1);
-    let question3 = new Trivia('Czech Republic?', 'Prague', 1);
-    let question4 = new Trivia('Portugal?', 'Lisbon', 1);
-    let question5 = new Trivia('Ethiopia?', 'Addis Ababa', 1);
+    let q1 = new Jeopardy('What is the capital of Chile?', 'Santiago', 2);
+    let q2 = new Jeopardy('What is the capital of France?', 'Paris', 1);
+    let q3 = new Jeopardy('What is the capital of Czech Republic?', 'Prague', 2);
+    let q4 = new Jeopardy('What is the capital of Portugal?', 'Lisbon', 2);
+    let q5 = new Jeopardy('What is the capital of Ethiopia?', 'Addis Ababa', 2);
+    let q6 = new Jeopardy('Who is the President of the United States?', 'Joe Biden', 1);
+    let q7 = new Jeopardy('Who is the leader of Russia?', 'Vladimir Putin', 1);
+    let q8 = new Jeopardy('What is the capital of the United States?', 'Washington DC', 1);
+    let q9 = new Jeopardy('What country is being invaded by Russia?', 'Ukraine', 2);
 
 
-    const qarray = [question1, question2, question3, question4, question5]
+{# Manages complexity by putting all the objects into one list #}
+    const qarray = [q1, q2, q3, q4, q5, q6, q7, q8, q9]
 
-    function test() {
-        window.alert(qarray[1])
-    }
+{# Question Answer function #}
     function QNA() {
+        {# Set variable "questions" to the number given by the user in the HTML #}
         let questions = parseInt(document.getElementById('number').value);
+        {# Iterates the procedure however many times the user requested #}
         for (let i = 0; i < questions; i++) {
+            {# Gets random object from the table #}
             const randomValue = qarray[Math.floor(Math.random() * qarray.length)];
-            let guess = prompt("What is the capital of " + randomValue.question);
+            {# After the object is used from the table, it should not be used again, indexes the object and removes
+            it from the array for that instance of the function #}
+            var index = qarray.indexOf(randomValue);
+            if (index > -1) {
+                qarray.splice(index, 1);
+            }
+            {# window prompt to ask question and provide how many points it is worth #}
+            let guess = prompt(randomValue.question + " Points: " + randomValue.point);
+            {# increases count of total questions by 1 each time. Use this to keep count after multiple uses of "QNA" #}
+            count = count + 1
+            total = total + randomValue.point
+            {# if statement to check answer using the method of the class QNA #}
             if (randomValue.CheckAnswer(guess)) {
-                score = score + 1;
-                document.getElementById('answer').innerHTML = "Well Done";
-                document.getElementById('score').innerHTML = "Your score is " + score;
+                {# If the score is correct, add a point to score #}
+                score = score + randomValue.point;
+                correct = correct + 1
+                {# Displays correct message, tells score out of total, and the questions correct out of questions asked #}
+                document.getElementById('answer').innerHTML = "Well Done!";
+                document.getElementById('score').innerHTML = "Your score is " + score + "/" + total;
+                document.getElementById('correct').innerHTML = "You got " + correct + " questions correct out of " + count;
             }
             else {
-                document.getElementById('score').innerHTML = "Your score is " + score;
-
+                {# Displays incorrect message, tells score out of total, and the questions correct out of questions asked #}
+                document.getElementById('answer').innerHTML = "Nice Try!";
+                document.getElementById('score').innerHTML = "Your score is " + score + "/" + total;
+                document.getElementById('correct').innerHTML = "Sorry, you have gotten " + correct + " questions correct out of " + count;
             }
-
             }
     }
 </script>
-{#    <button onclick="test()">LFG</button>#}
-    <div class="container"></div>
-    <label for="number">How many questions do you want?</label>
-    <input id="number" type="number"/>
-    <button onclick="QNA()">Submit</button>
-    <p id="answer"></p>
-    <p id="score"></p>
+{# Container and place for input #}
+    <div class="container" style="position: absolute; font-size: 40px;color: red; left: 600px">
+        <label for="number">How many questions do you want?</label>
+        <br>
+        <input id="number" type="number"/>
+        <button onclick="QNA()">Submit</button>
+    </div>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    <p style="text-align: center; font-size: 40px;color: red;" id="answer"></p>
+    <p style="text-align: center; font-size: 40px;color: red;" id="score"></p>
+    <p style="text-align: center; font-size: 40px;color: red;" id="correct"></p>
 
 {% endblock %}

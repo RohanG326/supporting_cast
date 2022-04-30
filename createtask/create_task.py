@@ -80,7 +80,7 @@ def createtask():
     state = False
     return render_template("createtask.html", randomvalue=random_value1, score1=score1, display=display)
 
-@create_tk.route('/rohancreatetask/', methods=['GET','POST'])
+@create_tk.route('/rcreatetask/', methods=['GET','POST'])
 def rohancreatetask():
     return render_template("rohancreatetask.html")
 
