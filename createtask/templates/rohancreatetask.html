@@ -12,6 +12,7 @@
     let total = 0
     let count = 0
     let correct = 0
+{# Collaborated with Aditya Khandelwal on the idea to use a Class and Objects #}
 {# Creates a class with the constructor methods for one object, (Question, Answer, and Point Values) #}
     class Jeopardy {
         constructor(question, answer, point) {
@@ -19,7 +20,7 @@
             this.answer = answer;
             this.point = point;
         }
-    {# Check Answer Method to use later on the object #}
+    {# Check Answer Method to use later on the objects in the list #}
         CheckAnswer(guess) {
             return guess === this.answer
         }
@@ -39,11 +40,11 @@
     const qarray = [q1, q2, q3, q4, q5, q6, q7, q8, q9]
 
 {# Question Answer function #}
-    function QNA() {
-        {# Set variable "questions" to the number given by the user in the HTML #}
-        let questions = parseInt(document.getElementById('number').value);
+{# Collaborated with Aditya Khandelwal on the idea for this function, all code written by me in JavaScript, his task
+ was done in python #}
+    function QNA(number) {
         {# Iterates the procedure however many times the user requested #}
-        for (let i = 0; i < questions; i++) {
+        for (let i = 0; i < number; i++) {
             {# Gets random object from the table #}
             const randomValue = qarray[Math.floor(Math.random() * qarray.length)];
             {# After the object is used from the table, it should not be used again, indexes the object and removes
@@ -81,14 +82,14 @@
         <label for="number">How many questions do you want?</label>
         <br>
         <input id="number" type="number"/>
-        <button onclick="QNA()">Submit</button>
+        <button onclick="QNA(document.getElementById('number').value)">Submit</button>
     </div>
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <p style="text-align: center; font-size: 40px;color: red;" id="answer"></p>
     <p style="text-align: center; font-size: 40px;color: red;" id="score"></p>
     <p style="text-align: center; font-size: 40px;color: red;" id="correct"></p>
